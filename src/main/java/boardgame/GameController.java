@@ -1,9 +1,21 @@
 package boardgame;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import persistence.GameLoader;
+import persistence.GameSaver;
 
 public class GameController {
 
@@ -38,7 +50,8 @@ public class GameController {
 
 	/**
 	 * Sets game view with the GameViewer class's constructor.
-	 *@param gv is the GameViewer objectt
+	 * 
+	 * @param gv is the GameViewer objectt
 	 */
 	public void setGv(GameViewer gv) {
 		this.gv = gv;
@@ -53,11 +66,11 @@ public class GameController {
 		String cleanedInput = input.toLowerCase();
 
 		if (!(validMoves.keySet().contains(cleanedInput) || validCommands.contains(cleanedInput))) {
-			String[] start = cleanedInput.split("\\s+");
-			if (start[0].equals("start") && start.length == 5) {
+			String[] command = cleanedInput.split("\\s+");
+			if (command[0].equals("start") && command.length == 5) {
 				try {
-					int rows = Integer.parseInt(start[1]), columns = Integer.parseInt(start[2]),
-							dots = Integer.parseInt(start[3]), holes = Integer.parseInt(start[4]);
+					int rows = Integer.parseInt(command[1]), columns = Integer.parseInt(command[2]),
+							dots = Integer.parseInt(command[3]), holes = Integer.parseInt(command[4]);
 
 					if ((rows < 5 || columns < 5) || ((holes + dots > (rows * columns) / 2))) {
 						gv.displayMsg("Invalid command!");
@@ -74,7 +87,41 @@ public class GameController {
 					return;
 				}
 
+			} else if (command[0].equals("save")) {
+				try {
+					JsonObject save = GameSaver.saveGame(game);
+					BufferedWriter bf = new BufferedWriter(new FileWriter(command[1]));
+					bf.write(save.toString());
+					bf.close();
+					gv.displayMsg("Game saved.");
+					return;
+				} catch (Exception e) {
+					gv.displayMsg("Could not save game. " + e.getMessage());
+					return;
+				}
+
+			} else if (command[0].contentEquals("load")) {
+				try {
+					File f = new File(command[1]);
+					BufferedReader br = new BufferedReader(new FileReader(f));
+					String savefile = "";
+					String line;
+					while((line = br.readLine()) != null)
+						savefile += line;
+					
+					JsonObject gameJson = new JsonParser().parse(savefile).getAsJsonObject();
+					
+					game = GameLoader.loadGame(gameJson);
+					game.setGameViewer(gv);
+					gv.printGame(game);
+					gv.displayMsg("Game loaded");
+					return;
+				} catch (Exception e) {
+					gv.displayMsg("Could not load game. " + e.getMessage());
+					return;
+				}
 			} else {
+
 				gv.displayMsg("Invalid command!");
 				return;
 			}
@@ -107,7 +154,6 @@ public class GameController {
 		}
 
 	}
-
 
 	public boolean getExitflag() {
 		return exitflag;

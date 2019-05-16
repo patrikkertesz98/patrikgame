@@ -20,5 +20,6 @@ public class Game {
 		}
 
 		sc.close();
+		
 	}
 }

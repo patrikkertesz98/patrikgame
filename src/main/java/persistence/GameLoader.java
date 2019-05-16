@@ -12,16 +12,17 @@ import boardgame.Location;
 
 public class GameLoader {
 
-	public static GameModel loadGame(JsonObject gameObject) throws Exception {
+	public static GameModel loadGame(JsonObject saveObject) throws Exception {
 
 		try {
-			if (!(HashCreator.sha256(gameObject.get("game").toString())
-					.equals(gameObject.get("checksum").getAsString())))
+			if (!(HashCreator.sha256(saveObject.get("game").toString())
+					.equals(saveObject.get("checksum").getAsString())))
 				throw new LoadException("Save file is corrupted.");
 		} catch (Exception e) {
 			throw e;
 		}
-
+		
+		JsonObject gameObject = saveObject.get("game").getAsJsonObject();
 		GameModel game = new GameModel();
 
 		// rows, columns, step
