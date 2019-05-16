@@ -59,7 +59,7 @@ public class GameController {
 					int rows = Integer.parseInt(start[1]), columns = Integer.parseInt(start[2]),
 							dots = Integer.parseInt(start[3]), holes = Integer.parseInt(start[4]);
 
-					if (rows < 5 || columns < 5) {
+					if ((rows < 5 || columns < 5) || ((holes + dots > (rows * columns) / 2))) {
 						gv.displayMsg("Invalid command!");
 						return;
 					} else {
