@@ -13,7 +13,7 @@ import boardgame.GameModel;
 
 import java.util.List;
 
-class GameModelTest {
+public class GameModelTest {
 	
 	private static GameModel game;
 	private static GameViewer gameviewer;
