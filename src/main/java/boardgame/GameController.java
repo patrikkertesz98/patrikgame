@@ -88,6 +88,12 @@ public class GameController {
 				}
 
 			} else if (command[0].equals("save")) {
+
+				if (game == null) {
+					gv.displayMsg("Nothing to save.");
+					return;
+				}
+
 				try {
 					JsonObject save = GameSaver.saveGame(game);
 					BufferedWriter bf = new BufferedWriter(new FileWriter(command[1]));
@@ -106,11 +112,11 @@ public class GameController {
 					BufferedReader br = new BufferedReader(new FileReader(f));
 					String savefile = "";
 					String line;
-					while((line = br.readLine()) != null)
+					while ((line = br.readLine()) != null)
 						savefile += line;
-					
+
 					JsonObject gameJson = new JsonParser().parse(savefile).getAsJsonObject();
-					
+
 					game = GameLoader.loadGame(gameJson);
 					game.setGameViewer(gv);
 					gv.printGame(game);
@@ -137,6 +143,10 @@ public class GameController {
 			}
 
 		} else if (validMoves.keySet().contains(cleanedInput)) {
+			if (game == null) {
+				gv.displayMsg("Initialize game first!");
+				return;
+			}
 			try {
 				boolean win = game.move(validMoves.get(cleanedInput));
 
