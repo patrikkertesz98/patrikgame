@@ -16,10 +16,14 @@ import java.util.List;
 class GameModelTest {
 	
 	private static GameModel game;
+	private static GameViewer gameviewer;
 	
 	@BeforeAll
 	static void initGame() {
 		game = new GameModel(10, 10, 15, 10);
+		gameviewer = new GameViewer();
+		//turning off display for tests
+		gameviewer.setDisplay(false);
 	}
 
 	@Test
@@ -51,7 +55,8 @@ class GameModelTest {
 	{
 		game = new GameModel(10, 10, 0, 0);
 		game.setPlayer(new Location(5,5));
-		game.setGameViewer(new GameViewer());
+		
+		game.setGameViewer(gameviewer);
 
 		try {
 			game.move(Way.DOWN);
@@ -72,7 +77,7 @@ class GameModelTest {
 	{
 		game = new GameModel(10, 10, 0, 0);
 		game.setPlayer(new Location(5,5));
-		game.setGameViewer(new GameViewer());
+		game.setGameViewer(gameviewer);
 
 		try {
 			game.move(Way.UP);
@@ -93,7 +98,7 @@ class GameModelTest {
 	{
 		game = new GameModel(10, 10, 0, 0);
 		game.setPlayer(new Location(5,5));
-		game.setGameViewer(new GameViewer());
+		game.setGameViewer(gameviewer);
 
 		try {
 			game.move(Way.LEFT);
@@ -116,7 +121,7 @@ class GameModelTest {
 	{
 		game = new GameModel(10, 10, 0, 0);
 		game.setPlayer(new Location(5,5));
-		game.setGameViewer(new GameViewer());
+		game.setGameViewer(gameviewer);
 
 		try {
 			game.move(Way.RIGHT);
