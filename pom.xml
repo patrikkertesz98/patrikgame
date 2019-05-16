@@ -1,50 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>unideb.inf</groupId>
-    <artifactId>patrikgame</artifactId>
-    <version>1.0-SNAPSHOT</version>
+	<groupId>unideb.inf</groupId>
+	<artifactId>patrikgame</artifactId>
+	<version>1.0-SNAPSHOT</version>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.build.outputEncoding>UTF-8</project.build.outputEncoding>
-        <!-- <maven.compiler.source>11</maven.compiler.source> -->
-       <!--  <maven.compiler.target>11</maven.compiler.target> -->
-        <exec.cleanupDaemonThreads>false</exec.cleanupDaemonThreads>
-        <dependency.locations.enabled>false</dependency.locations.enabled>
-        <exec.mainClass>boardgame.Game</exec.mainClass>
-    </properties>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.outputEncoding>UTF-8</project.build.outputEncoding>
+		<!-- <maven.compiler.source>11</maven.compiler.source> -->
+		<!-- <maven.compiler.target>11</maven.compiler.target> -->
+		<exec.cleanupDaemonThreads>false</exec.cleanupDaemonThreads>
+		<dependency.locations.enabled>false</dependency.locations.enabled>
+		<exec.mainClass>boardgame.Game</exec.mainClass>
+	</properties>
 
-    <name>Patrik Game</name>
-    <description>A simple path finding game.</description>
-    <developers>
-        <developer>
-            <id>kertpat2</id>
-            <name>Kertész Patrik</name>
-            <email>kertpat2@gmail.com</email>
-        </developer>
-    </developers>
+	<name>Patrik Game</name>
+	<description>A simple path finding game.</description>
+	<developers>
+		<developer>
+			<id>kertpat2</id>
+			<name>Kertész Patrik</name>
+			<email>kertpat2@gmail.com</email>
+		</developer>
+	</developers>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.8.5</version>
-        </dependency>
-    </dependencies>
+	<scm>
+		<url>https://github.com/patrikkertesz98/patrikgame</url>
+		<connection>scm:git:git://github.com/patrikkertesz98/patrikgame.git</connection>
+		<developerConnection>scm:git:git@github.com:patrikkertesz98/patrikgame.git</developerConnection>
+	</scm>
 
-    <build>
-        <plugins>
-        </plugins>
-    </build>
-    <reporting>
+	<dependencies>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.8.5</version>
+		</dependency>
+	</dependencies>
 
-        <plugins>
-        </plugins>
-    </reporting>
+	<build>
+		<plugins>
+		</plugins>
+	</build>
+	<reporting>
+
+		<plugins>
+		</plugins>
+	</reporting>
 
 
 
