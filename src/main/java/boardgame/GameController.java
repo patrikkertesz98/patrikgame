@@ -94,7 +94,9 @@ public class GameController {
 				boolean win = game.move(validMoves.get(cleanedInput));
 
 				if (win) {
-					//TODO
+					gv.displayMsg("Win!");
+					exitflag = true;
+					return;
 				}
 
 			} catch (MoveException e) {
