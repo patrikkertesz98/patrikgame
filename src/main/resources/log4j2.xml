@@ -6,10 +6,6 @@
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="%highlight{${LOG_PATTERN}}"/>
         </Console>
-        <File name="File1" fileName="messages.log" append="false">
-            <PatternLayout pattern="${LOG_PATTERN}"/>
-            <ThresholdFilter level="WARN" onMatch="ACCEPT" onMismatch="DENY"/>
-        </File>
     </Appenders>
     <Loggers>
         <Root level="all">
