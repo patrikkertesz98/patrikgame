@@ -56,7 +56,7 @@ public class GameSaver {
 		gameObject.add("holes", holesArray);
 
 		// creating checksum
-		String checksum = HashCreator.sha256(gameObject.toString());
+		String checksum = crypto.HashCreator.sha256(gameObject.toString());
 		
 		JsonObject saveObject = new JsonObject();
 		saveObject.add("game", gameObject);
@@ -68,9 +68,9 @@ public class GameSaver {
 	public static void main(String[] args) throws Exception {
 		GameModel game = new GameModel(10, 10, 15, 10);
 		JsonObject gameObject = saveGame(game);
-		System.out.println(HashCreator.sha256(gameObject.get("game").toString()));
+		System.out.println(crypto.HashCreator.sha256(gameObject.get("game").toString()));
 		System.out.println(gameObject.get("checksum").getAsString());
-		System.out.println(HashCreator.sha256(gameObject.get("game").toString()).equals(gameObject.get("checksum").getAsString()));
+		System.out.println(crypto.HashCreator.sha256(gameObject.get("game").toString()).equals(gameObject.get("checksum").getAsString()));
 		System.out.println(gameObject);
 //		GameModel newGame = GameLoader.loadGame(gameObject);
 

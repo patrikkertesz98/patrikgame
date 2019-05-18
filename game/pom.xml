@@ -4,9 +4,12 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>unideb.inf</groupId>
-	<artifactId>patrikgame</artifactId>
-	<version>1.0</version>
+	<parent>
+		<groupId>unideb.inf</groupId>
+		<artifactId>patrikgame</artifactId>
+		<version>1.0</version>
+	</parent>
+	<artifactId>game</artifactId>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -15,68 +18,18 @@
 		<!-- <maven.compiler.source>8</maven.compiler.source> <maven.compiler.target>8</maven.compiler.target> -->
 		<exec.mainClass>boardgame.Game</exec.mainClass>
 	</properties>
+	<packaging>jar</packaging>
 
-	<name>Patrik Game</name>
+	<name>game</name>
 	<description>A simple path finding game.</description>
-	<developers>
-		<developer>
-			<id>kertpat2</id>
-			<name>Kertész Patrik</name>
-			<email>kertpat2@gmail.com</email>
-		</developer>
-	</developers>
-
-	<modules>
-		<module>game</module>
-		<module>crypto</module>
-	</modules>
-	<packaging>pom</packaging>
-
-	<scm>
-		<url>https://github.com/patrikkertesz98/patrikgame</url>
-		<connection>scm:git:git://github.com/patrikkertesz98/patrikgame.git</connection>
-		<developerConnection>scm:git:git@github.com:patrikkertesz98/patrikgame.git</developerConnection>
-	</scm>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.8.5</version>
+			<groupId>unideb.inf</groupId>
+			<artifactId>crypto</artifactId>
+			<version>1.0</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-			<version>2.11.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>2.11.2</version>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-api</artifactId>
-			<version>5.4.2</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-engine</artifactId>
-			<version>5.4.2</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.junit.jupiter</groupId>
-			<artifactId>junit-jupiter-params</artifactId>
-			<version>5.4.2</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- <dependency> -->
-		<!-- <groupId>org.jacoco</groupId> -->
-		<!-- <artifactId>jacoco-maven-plugin</artifactId> -->
-		<!-- <version>0.8.4</version> -->
-		<!-- </dependency> -->
+
 	</dependencies>
 
 	<build>

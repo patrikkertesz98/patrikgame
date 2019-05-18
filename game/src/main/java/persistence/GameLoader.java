@@ -10,17 +10,20 @@ import com.google.gson.JsonObject;
 import boardgame.GameModel;
 import boardgame.Location;
 
+
 public class GameLoader {
 
 	public static GameModel loadGame(JsonObject saveObject) throws Exception {
 
 		try {
-			if (!(HashCreator.sha256(saveObject.get("game").toString())
+			if (!(crypto.HashCreator.sha256(saveObject.get("game").toString())
 					.equals(saveObject.get("checksum").getAsString())))
 				throw new LoadException("Save file is corrupted.");
 		} catch (Exception e) {
 			throw e;
 		}
+		
+		
 		
 		JsonObject gameObject = saveObject.get("game").getAsJsonObject();
 		GameModel game = new GameModel();
