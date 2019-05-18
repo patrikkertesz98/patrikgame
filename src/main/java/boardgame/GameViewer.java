@@ -1,5 +1,8 @@
 package boardgame;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import boardgame.GameModel;
 
 public class GameViewer {
@@ -7,6 +10,7 @@ public class GameViewer {
 	private static char empty = ' ', player = 'X', goal = 'C', dot = 'O', hole = '\\';
 	private static int width = 1;
 	private boolean display;
+	private static Logger logger = LogManager.getLogger(GameViewer.class);
 
 	public GameViewer() {
 		display = true;
@@ -16,6 +20,7 @@ public class GameViewer {
 	 * Clears screen by printing 50 empty lines.
 	 */
 	private void clearScreen() {
+		logger.debug("Screen cleared.");
 		if (display)
 			for (int i = 0; i < 50; i++)
 				System.out.println();
@@ -27,6 +32,7 @@ public class GameViewer {
 	 * @param message the {@code string} which needs to be printed.
 	 */
 	public void displayMsg(String message) {
+		logger.debug("Message displayed: " + message);
 		if (display)
 			System.out.println(">>>>> " + message + " <<<<<");
 	}
@@ -58,6 +64,7 @@ public class GameViewer {
 	}
 
 	public void printGame(GameModel game) {
+		logger.debug("Gamestate displayed.");
 		if (display) {
 			clearScreen();
 			for (int i = 0; i < game.getRows(); i++) {

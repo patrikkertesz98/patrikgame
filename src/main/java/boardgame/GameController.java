@@ -3,13 +3,15 @@ package boardgame;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -24,6 +26,7 @@ public class GameController {
 	private GameModel game;
 	private GameViewer gv;
 	private boolean exitflag;
+	private static Logger logger = LogManager.getLogger(GameController.class);
 
 	/**
 	 * Constructor of validMoves, validCommands
@@ -121,6 +124,7 @@ public class GameController {
 					game.setGameViewer(gv);
 					gv.printGame(game);
 					gv.displayMsg("Game loaded");
+					br.close();
 					return;
 				} catch (Exception e) {
 					gv.displayMsg("Could not load game. " + e.getMessage());

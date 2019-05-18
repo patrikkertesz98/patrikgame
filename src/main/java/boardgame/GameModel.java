@@ -3,6 +3,9 @@ package boardgame;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 /**
  *
  */
@@ -11,13 +14,14 @@ public class GameModel {
 	private Location player, goal;
 	private List<Location> dots, holes;
 	private GameViewer gameViewer;
+	private static Logger logger = LogManager.getLogger(GameViewer.class);
 
 	public Integer getStep() {
 		return step;
 	}
 
-	public GameModel(){
-
+	public GameModel() {
+		logger.debug("Empty Game Model created.");
 	}
 
 	public void setRows(Integer rows) {
@@ -51,9 +55,9 @@ public class GameModel {
 	/**
 	 * Constructor of GameModel
 	 *
-	 * @param rows player provided {@code number} of rows.
-	 * @param columns player provided {@code number} of columns.
-	 * @param numOfDots the {@code number} of dots on the grid.
+	 * @param rows       player provided {@code number} of rows.
+	 * @param columns    player provided {@code number} of columns.
+	 * @param numOfDots  the {@code number} of dots on the grid.
 	 * @param numOfHoles the {@code number} of holes on the grid.
 	 */
 	public GameModel(Integer rows, Integer columns, Integer numOfDots, Integer numOfHoles) {
@@ -82,9 +86,10 @@ public class GameModel {
 				i++;
 			}
 		}
-
+		logger.debug(
+				"Game Model created with parameters: " + rows + ", " + columns + ", " + numOfDots + ", " + numOfHoles);
 	}
-	
+
 	public void setGameViewer(GameViewer gameViewer) {
 		this.gameViewer = gameViewer;
 	}
@@ -121,9 +126,11 @@ public class GameModel {
 	 * @throws MoveException throws MoveException if invalidState occurs.
 	 */
 	public boolean move(Way way) throws MoveException {
+		logger.debug("Move started in way: " + way);
 		movePlayer(way);
 		checkStep();
 		gameViewer.printGame(this);
+		logger.debug("Move finished in way: " + way);
 		return checkWin();
 	}
 
@@ -149,7 +156,6 @@ public class GameModel {
 			player = prevLoc;
 			throw new MoveException("Invalid movement.");
 		}
-
 	}
 
 	/**
@@ -166,7 +172,8 @@ public class GameModel {
 	/**
 	 * Checks if the player has won the game.
 	 *
-	 * @return returns {@code true} if the player's location equals the goal's location, returns {@code false} if not.
+	 * @return returns {@code true} if the player's location equals the goal's
+	 *         location, returns {@code false} if not.
 	 */
 	private boolean checkWin() {
 		return player.equals(goal);
@@ -175,7 +182,8 @@ public class GameModel {
 	/**
 	 * Checks if the player is in a valid location.
 	 *
-	 * @return returns {@code true} if the player is out of bounds or steps on a hole, returns {@code false} if all of these are false.
+	 * @return returns {@code true} if the player is out of bounds or steps on a
+	 *         hole, returns {@code false} if all of these are false.
 	 */
 	private boolean invalidState() {
 		return holes.contains(player) || player.getRow() < 0 || player.getRow() >= rows || player.getColumn() < 0
@@ -187,7 +195,8 @@ public class GameModel {
 	 * Checks if a location is free to place anything in it.
 	 *
 	 * @param l the location
-	 * @return returns {@code true} if location is not contained by player, goal, dots, holes. Returns {@code false} if anyone of these is true.
+	 * @return returns {@code true} if location is not contained by player, goal,
+	 *         dots, holes. Returns {@code false} if anyone of these is true.
 	 */
 	private boolean locationIsFree(Location l) {
 		return !(l.equals(player) || l.equals(goal) || dots.contains(l) || holes.contains(l));

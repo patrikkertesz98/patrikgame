@@ -5,13 +5,10 @@ import static org.junit.jupiter.api.Assertions.*;
 import boardgame.GameViewer;
 import boardgame.Location;
 import boardgame.Way;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import boardgame.GameModel;
-
-import java.util.List;
 
 public class GameModelTest {
 	
