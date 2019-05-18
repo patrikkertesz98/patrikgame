@@ -116,6 +116,7 @@
 							<mainClass>boardgame.Game</mainClass>
 						</transformer>
 					</transformers>
+					<createDependencyReducedPom>false</createDependencyReducedPom>
 				</configuration>
 				<executions>
 					<execution>
