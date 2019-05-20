@@ -12,7 +12,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.build.outputEncoding>UTF-8</project.build.outputEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<!-- <maven.compiler.source>8</maven.compiler.source> <maven.compiler.target>8</maven.compiler.target> -->
+		 <maven.compiler.source>11</maven.compiler.source> <maven.compiler.target>11</maven.compiler.target>
 		<exec.mainClass>boardgame.Game</exec.mainClass>
 	</properties>
 
@@ -130,7 +130,7 @@
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<version>3.1.0</version>
 				<configuration>
-					<aggregate>true</aggregate>
+            <javadocExecutable>${java.home}/bin/javadoc</javadocExecutable>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -157,7 +157,7 @@
 				<artifactId>maven-jxr-plugin</artifactId>
 				<version>3.0.0</version>
 				<configuration>
-					<aggregate>true</aggregate>
+
 				</configuration>
 			</plugin>
 			<plugin>
@@ -165,7 +165,7 @@
 				<artifactId>maven-checkstyle-plugin</artifactId>
 				<version>3.0.0</version>
 				<configuration>
-					<aggregate>true</aggregate>
+
 				</configuration>
 				<reportSets>
 					<reportSet>

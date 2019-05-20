@@ -40,6 +40,12 @@ public class Location {
 		return row;
 	}
 
+	/**
+	 * Checks if an object location equals
+	 *
+	 * @param obj
+	 * @return
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (obj.getClass() == Location.class)

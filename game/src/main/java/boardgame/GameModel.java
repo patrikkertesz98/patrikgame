@@ -6,15 +6,13 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-/**
- *
- */
+
 public class GameModel {
 	private Integer rows, columns, step;
 	private Location player, goal;
 	private List<Location> dots, holes;
 	private GameViewer gameViewer;
-	private static Logger logger = LogManager.getLogger(GameViewer.class);
+	private static Logger logger = LogManager.getLogger(GameModel.class);
 
 	public Integer getStep() {
 		return step;
