@@ -1,4 +1,4 @@
-package boardgame;
+package model;
 
 public enum Way {
 	UP,

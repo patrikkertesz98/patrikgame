@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="crypto" />
         <module name="game" />
+        <module name="model" />
       </profile>
     </annotationProcessing>
   </component>

@@ -1,4 +1,4 @@
-package boardgame;
+package model;
 
 public class MoveException extends Exception {
 

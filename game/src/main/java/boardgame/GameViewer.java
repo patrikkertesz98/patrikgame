@@ -3,7 +3,7 @@ package boardgame;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import boardgame.GameModel;
+import model.*;
 
 public class GameViewer {
 

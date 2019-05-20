@@ -19,6 +19,9 @@ import com.google.gson.JsonParser;
 import persistence.GameLoader;
 import persistence.GameSaver;
 
+import model.*;
+import persistence.Leaderboard;
+
 public class GameController {
 
 	private Map<String, Way> validMoves;
@@ -70,9 +73,9 @@ public class GameController {
 
 		if (!(validMoves.keySet().contains(cleanedInput) || validCommands.contains(cleanedInput))) {
 			String[] command = cleanedInput.split("\\s+");
-			if (command[0].equals("start") && command.length == 5) {
+			if (command[0].equals("start") && command.length == 2) {
 				try {
-					int rows = Integer.parseInt(command[1]), columns = Integer.parseInt(command[2]),
+					/*int rows = Integer.parseInt(command[1]), columns = Integer.parseInt(command[2]),
 							dots = Integer.parseInt(command[3]), holes = Integer.parseInt(command[4]);
 
 					if ((rows < 5 || columns < 5) || ((holes + dots > (rows * columns) / 2))) {
@@ -81,9 +84,35 @@ public class GameController {
 					} else {
 						this.game = new GameModel(rows, columns, dots, holes);
 						gv.printGame(game);
-						game.setGameViewer(gv);
 						return;
-					}
+					}*/
+
+					int rows = 8, cols = 8, holes = 0, dots = 0;
+					this.game = new GameModel(rows, cols, dots, holes);
+					this.game.setPlayerName(command[1]);
+					game.getDots().add(new Location(0, 4));
+					game.getDots().add(new Location(1, 2));
+					game.getDots().add(new Location(1, 6));
+					game.getDots().add(new Location(3, 2));
+					game.getDots().add(new Location(3, 4));
+					game.getDots().add(new Location(4, 0));
+					game.getDots().add(new Location(4, 3));
+					game.getDots().add(new Location(4, 7));
+					game.getDots().add(new Location(5, 3));
+					game.getDots().add(new Location(5, 6));
+					game.getDots().add(new Location(6, 7));
+					game.getDots().add(new Location(6, 2));
+					game.getDots().add(new Location(7, 0));
+
+					game.getHoles().add(new Location(2, 2));
+					game.getHoles().add(new Location(2, 7));
+					game.getHoles().add(new Location(4, 1));
+					game.getHoles().add(new Location(5, 5));
+					game.getHoles().add(new Location(7, 3));
+
+					gv.printGame(game);
+					return;
+
 
 				} catch (Exception e) {
 					gv.displayMsg("Invalid command!");
@@ -121,7 +150,6 @@ public class GameController {
 					JsonObject gameJson = new JsonParser().parse(savefile).getAsJsonObject();
 
 					game = GameLoader.loadGame(gameJson);
-					game.setGameViewer(gv);
 					gv.printGame(game);
 					gv.displayMsg("Game loaded");
 					br.close();
@@ -153,10 +181,22 @@ public class GameController {
 			}
 			try {
 				boolean win = game.move(validMoves.get(cleanedInput));
-
+				gv.printGame(game);
 				if (win) {
 					gv.displayMsg("Win!");
 					exitflag = true;
+
+					Leaderboard.loadBoard();
+					Leaderboard.addScore(game.getPlayerName(), game.getScore());
+					Leaderboard.printScores();
+
+					try{
+						Leaderboard.saveBoard();
+					}catch (Exception e){
+						return;
+					};
+
+
 					return;
 				}
 

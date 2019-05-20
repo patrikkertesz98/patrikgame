@@ -7,8 +7,8 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import boardgame.GameModel;
-import boardgame.Location;
+import crypto.HashCreator;
+import model.*;
 
 
 public class GameLoader {
@@ -16,7 +16,7 @@ public class GameLoader {
 	public static GameModel loadGame(JsonObject saveObject) throws Exception {
 
 		try {
-			if (!(crypto.HashCreator.sha256(saveObject.get("game").toString())
+			if (!(HashCreator.sha256(saveObject.get("game").toString())
 					.equals(saveObject.get("checksum").getAsString())))
 				throw new LoadException("Save file is corrupted.");
 		} catch (Exception e) {
