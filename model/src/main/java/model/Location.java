@@ -47,7 +47,7 @@ public class Location {
 	 * Checks if an object location equals
 	 *
 	 * @param obj
-	 * @return
+	 * @return returns a boolean that determines if the object is on a given location.
 	 */
 	@Override
 	public boolean equals(Object obj) {
