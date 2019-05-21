@@ -2,6 +2,10 @@ package boardgame;
 
 import java.util.Scanner;
 
+
+/**
+ * The is the game itself.
+ */
 public class Game {
 	public static void main(String[] args) {
 		GameViewer gv = new GameViewer();

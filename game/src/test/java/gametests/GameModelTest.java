@@ -1,5 +1,6 @@
 package gametests;
 
+import static model.Way.DOWN;
 import static org.junit.jupiter.api.Assertions.*;
 
 import boardgame.GameViewer;
@@ -109,7 +110,7 @@ public class GameModelTest {
 		game.setPlayer(new Location(5, 5));
 
 		try {
-			game.move(Way.DOWN);
+			game.move(DOWN);
 		} catch (Exception e) {
 			fail();
 
@@ -120,5 +121,45 @@ public class GameModelTest {
 		assertEquals(game.getPlayer(), new Location(7, 5));
 
 	}
+
+	@Test
+	void testStepExceptionDown() {
+		game = new GameModel(10, 10, 0, 0);
+		game.setPlayer(new Location(10, 10));
+
+		assertThrows(MoveException.class, ()->game.move(Way.DOWN));
+
+
+	}
+	@Test
+	void testStepExceptionRight() {
+		game = new GameModel(10, 10, 0, 0);
+		game.setPlayer(new Location(10, 10));
+
+		assertThrows(MoveException.class, ()->game.move(Way.RIGHT));
+
+
+	}
+	@Test
+	void testStepExceptionUp() {
+		game = new GameModel(0, 10, 0, 0);
+		game.setPlayer(new Location(10, 10));
+
+		assertThrows(MoveException.class, ()->game.move(Way.UP));
+
+
+	}
+	@Test
+	void testStepExceptionLeft() {
+		game = new GameModel(10, 0, 0, 0);
+		game.setPlayer(new Location(10, 10));
+
+		assertThrows(MoveException.class, ()->game.move(Way.LEFT));
+
+
+	}
+
+
+
 
 }

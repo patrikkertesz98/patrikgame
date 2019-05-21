@@ -5,6 +5,9 @@ import com.google.gson.JsonObject;
 
 import model.*;
 
+/**
+ * This class handles saving a game state.
+ */
 public class GameSaver {
 	public static JsonObject saveGame(GameModel game) throws Exception {
 

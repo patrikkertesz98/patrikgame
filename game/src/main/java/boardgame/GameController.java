@@ -22,6 +22,9 @@ import persistence.GameSaver;
 import model.*;
 import persistence.Leaderboard;
 
+/**
+ * This class processes input and creates the list of valid moves and commands.
+ */
 public class GameController {
 
 	private Map<String, Way> validMoves;

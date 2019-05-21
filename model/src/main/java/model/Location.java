@@ -2,6 +2,9 @@ package model;
 
 import java.util.Random;
 
+/**
+ * This is the class that handles the location operations.
+ */
 public class Location {
 	private Integer row, column;
 

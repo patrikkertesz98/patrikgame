@@ -5,6 +5,9 @@ import org.apache.logging.log4j.Logger;
 
 import model.*;
 
+/**
+ * This class handles displaying the game.
+ */
 public class GameViewer {
 
 	private static char empty = ' ', player = 'X', goal = 'C', dot = 'O', hole = '\\';

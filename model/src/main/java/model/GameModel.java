@@ -7,6 +7,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
+/**
+ * This is the game model class that represents the game's model.
+ */
 public class GameModel {
 	private Integer rows, columns, step;
 	private Location player, goal;

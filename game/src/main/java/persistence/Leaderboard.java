@@ -11,11 +11,19 @@ import java.util.stream.Collectors;
 
 import static java.util.Map.Entry.comparingByValue;
 
+/**
+ * This class handles the leaderboard.
+ */
 public class Leaderboard {
     private static Map<String, Integer> board;
     private static final String LEADERBOARD_FILE_PATH = "leaderboard.json";
 
 
+    /**
+     * Handles saving the board.
+     *
+     * @throws Exception when there's no leaderboard file.
+     */
     public static void saveBoard() throws Exception{
 
         JsonObject boardObject = new JsonObject();
@@ -35,6 +43,12 @@ public class Leaderboard {
         bf.close();
     }
 
+    /**
+     * Handles adding scores to the leaderboard.
+     *
+     * @param name the player's name.
+     * @param score the player's score.
+     */
     public static void addScore(String name, Integer score){
         board.put(name, score);
         sortBoard();
@@ -49,6 +63,9 @@ public class Leaderboard {
     }
 
 
+    /**
+     * Loads the leaderboard.
+     */
     public static void loadBoard(){
         try{
             File f = new File(LEADERBOARD_FILE_PATH);
@@ -69,12 +86,16 @@ public class Leaderboard {
             br.close();
 
         } catch (Exception e){
-            //nincs fájl, vagy rossz
+
             board = new LinkedHashMap<String, Integer>();
         }
 
     }
 
+    /**
+     * Sorts the leaderboard.
+     *
+     */
     public static void sortBoard(){
         board = board.entrySet().stream().
                 sorted(comparingByValue())
@@ -82,6 +103,9 @@ public class Leaderboard {
                         LinkedHashMap::new));
     }
 
+    /**
+     * Prints the leaderboard in ascending order.
+     */
     public static void printScores(){
         board.entrySet().stream()
                 .sorted(comparingByValue())

@@ -11,6 +11,9 @@ import crypto.HashCreator;
 import model.*;
 
 
+/**
+ * This class handles loading a saved game state and checking of corrupted save files.
+ */
 public class GameLoader {
 
 	public static GameModel loadGame(JsonObject saveObject) throws Exception {
